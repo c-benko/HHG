@@ -1,15 +1,15 @@
 from pylab import *
 
 def wbar(int,pl,atom):
-    ''' determines the ionization rate for a pulse for a variety of noble gases. Uses the formulas in Zenghu's book.
-    
+    ''' determines the ionization rate for a pulse for a variety of noble gases. Uses the formulas in Zenghu Chang's book.
+
     input:
         int = laser intensity in 10**14 W cm**-2
         pl = pulse length in fs
         atom = "Xe", "Kr", etc.
     Output:
         cycle averaged ionization rate. '''
-        
+
     F = sqrt(int/355)
     atom_dict = {"Xe": 0, "Kr": 1, "Ar": 2,"Ne":3}
     ind = atom_dict[atom]
@@ -23,10 +23,10 @@ def wbar(int,pl,atom):
     glm = array([3, 3, 3, 3])
     wb = sqrt(2/pi)*sqrt(3*F/2/F0)*cnl*glm*Ip*exp(-2*F0/3/F)*41.341*(2*F0/F)**(2*ns-m-1)
     return wb[ind]
-    
+
 def ionfrac(int, pl, atom):
     ''' determines the ionization fraction for a pulse for a variety of noble gases. Uses the formulas in Zenghu's book.
-    
+
     input:
         int = laser intensity in 10**14 W cm**-2
         pl = pulse length in fs
@@ -43,7 +43,7 @@ def ionfrac(int, pl, atom):
     return 1-exp(-w)
 
 def ioncrit(atom,q):
-    ''' determines the critical ionization fraciton at 1070nm. 
+    ''' determines the critical ionization fraciton at 1070nm.
     input:
         atom = "Xe", "Kr", etc.
         q = harmonic order
@@ -64,4 +64,3 @@ def ioncrit(atom,q):
     w = c*2*pi/(lam)
     dn = (na)-wp**2/(wr**2 - q**2*w**2)
     return (1+natm*re/2/pi/dn*lam**2)**-1
-    
